@@ -8,8 +8,37 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        String          @id @default(cuid())
+  email     String          @unique
+  password  String
   name      String?
+  createdAt DateTime        @default(now())
+  summaries ArticleSummary[] // Add this line to complete the relation
+}
+
+model NewsCache {
+  key       String   @id
+  data      Json
   createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model RateLimitRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  createdAt  DateTime @default(now())
+
+  @@index([identifier, createdAt])
+}
+
+model ArticleSummary {
+  id           String   @id @default(cuid())
+  userId       String
+  articleUrl   String?
+  summary      String   @db.Text
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
