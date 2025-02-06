@@ -40,3 +40,10 @@ Cookie: token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImNtNm03ajlydjAwMDE4ejhoeDM3YnRjZ2wiL
   "articleUrl": "https://bitcoinist.com/dogecoin-etf-intensifies-grayscale-joins-the-chase/",
   "customPrompt": "Summarize this article in 3 bullet points."
 }
+
+###test fetch article
+POST http://localhost:3001/api/news/newscontent
+
+{
+  "articleUrl": "https://blogs.lse.ac.uk/usappblog/2025/02/05/president-trumps-actions-on-federal-employees-undo-years-of-progress-and-may-mean-lasting-damage-for-the-us-civil-service/"
+}

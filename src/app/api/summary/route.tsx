@@ -2,17 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { generateSummary } from "@/lib/openai";
 import { verifyToken } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import fetch from "node-fetch";
+import { extractArticleContent } from "@/lib/extractArticle";
 
-async function fetchArticleText(articleUrl: string): Promise<string> {
-	try {
-		const response = await fetch(articleUrl);
-		return await response.text();
-	} catch (error) {
-		console.error("Failed to fetch article content:", error);
-		return "";
-	}
-}
 export async function POST(request: NextRequest) {
 	try {
 		const token = request.cookies.get("token")?.value;
@@ -39,11 +30,12 @@ export async function POST(request: NextRequest) {
 				{ status: 400 }
 			);
 		}
-		const articleText = await fetchArticleText(articleUrl);
+		const articleText = await extractArticleContent(articleUrl);
 
 		if (!articleText) {
 			return NextResponse.json({ error: "Failed to fetch article content" });
 		}
+		console.log("articleText: ", articleText);
 		const summary =
 			(await generateSummary(articleText, customPrompt, payload.id)) ?? "";
 

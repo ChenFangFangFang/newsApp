@@ -28,7 +28,9 @@ const NavBar = () => {
 			<div
 				className={`${MAX_WIDTH} mx-auto px-4 flex justify-between items-center h-16`}
 			>
-				<h1 className="text-xl font-semibold text-white">Business Insights</h1>
+				<h1 className="text-xl font-semibold text-white">
+					AI News Investment Analysis
+				</h1>
 				<div className="flex items-center gap-4">
 					<Button variant="secondary" size="sm" onClick={handleLogout}>
 						Logout
