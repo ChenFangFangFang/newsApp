@@ -4,6 +4,7 @@ A modern news application built with Next.js, Prisma, and multiple API integrati
 
 - Version: 1.0.0
 - Author: Chen Shiyang (@ChenFangFangFang)
+- Connect with me: [LinkedIn](www.linkedin.com/in/shiyangchen0430)
 
 ## Prerequisites
 
